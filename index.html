@@ -6,28 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style type="text/css">
-    canvas{
-        border:1px solid black; background-color:#424242; float: left;
-    }
-    .main{
-        float: left;
-    margin-left: 40px;
+        canvas {
+            border: 1px solid black;
+            background-color: #424242;
+            float: left;
+        }
 
-    }
+        .main {
+            float: left;
+            margin-left: 40px;
+
+        }
     </style>
 </head>
 
 <body style="background-color: #24292e;">
-    <canvas id="canvas" width="600px" height="600px" ></canvas><div class="main"><span id="span" style="width: 100px; height: 20px; color: cornsilk;">Coord</span>
-    <form>
-        <input style="
+    <canvas id="canvas" width="600px" height="600px"></canvas>
+    <div class="main" style=" height: 20px; color: cornsilk;"><span id="span" >Coord</span><div>Timer: <span id="h">00</span>:<span id="m">00</span>:<span id="s">00</span></div><div>Count of turns: <span id="turn">0</span></div>
+        <form>
+            <span>Length of square (2-10): </span><input style="
+        border: 0;
+        border-radius: 3px;
         margin-top: 10px;
-    " id="difficult" placeholder="length of square" type="number" min="2">
-        
-    </form>
-    <button id="ok" style="
+        width: 40px;
+        background-color: cornsilk;
+    
+    " id="difficult"  type="number" min="2" max="10">
+
+        </form>
+        <button id="ok" style="
+        border: 0;
+        border-radius: 3px;
+        background-color: cornsilk;
+        height: 20px;
     margin-top: 10px;
-">Ok!</button></div>
+">New game!</button>
+    </div>
 </body>
 <script src="index.js"></script>
 

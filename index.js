@@ -4,6 +4,10 @@ function myArr(){
     
 }
 myArr()
+const turn = document.getElementById('turn')
+const min =document.getElementById('m')
+const hour =document.getElementById('h')
+const sec =document.getElementById('s')
 const c = document.getElementById("canvas");
 const span = document.getElementById("span");
 const ok = document.getElementById("ok");
@@ -26,16 +30,42 @@ function filled() {
 ok.addEventListener('click', () => {
     
     arrlength = +difficult.value;
-    
+    var a = [];
+    for (let i=0; i<arrlength*arrlength; i++){
+        a.push(i);
+    }
+    for (let i = a.length - 1; i > 0; i--) {
+		let j = Math.floor(Math.random() * (i + 1));
+		let temp = a[i];
+		a[i] = a[j];
+		a[j] = temp;
+	}
    
     arr = [];
+    let k = 0;
     
-    a = 0;
     for (let i = 0; i < arrlength; i++) {
         arr[i] = [];
         for (let j = 0; j < arrlength; j++) {
-            arr[i][j] = a++;
+            
+            arr[i][j] = a[k];
+            k++;
+
+
         }
+        let s = 1,m=1,h=1;
+        timerId = setInterval(function () {
+            
+            sec.innerText = s++;
+            if (s==59){
+                min.innerText = m++;
+                s=0;
+                if (m==59){
+                    hour.innerText = h++;
+                    m=0;
+                }
+            }
+		}, 1000);
     }
 
 rectSize = c.width / arr.length;
@@ -72,7 +102,7 @@ function draw() {
     }
 }
 
-
+t = 1;
 c.addEventListener('mousemove', (event) => {
     MousePosX = event.pageX - 8;
     MousePosY = event.pageY - 8;
@@ -84,23 +114,28 @@ c.addEventListener('click', () => {
         arr[nullposY][nullposX] = arr[nullposY - 1][nullposX]
         arr[nullposY - 1][nullposX] = temp
         draw()
+        turn.innerText = t++;
     }
     if (x + rectSize <= MousePosX && y + rectSize >= MousePosY && MousePosX <= x + 2 * rectSize && MousePosY >= y) {
         temp = arr[nullposY][nullposX]
         arr[nullposY][nullposX] = arr[nullposY][nullposX + 1]
         arr[nullposY][nullposX + 1] = temp
         draw()
+        turn.innerText = t++;
     }
     if (x <= MousePosX && y + 2 * rectSize >= MousePosY && MousePosX <= x + rectSize && MousePosY >= y + rectSize) {
         temp = arr[nullposY][nullposX]
         arr[nullposY][nullposX] = arr[nullposY + 1][nullposX]
         arr[nullposY + 1][nullposX] = temp
         draw()
+        turn.innerText = t++;
     }
     if (x - rectSize <= MousePosX && y + rectSize >= MousePosY && MousePosX <= x && MousePosY >= y) {
         temp = arr[nullposY][nullposX]
         arr[nullposY][nullposX] = arr[nullposY][nullposX - 1]
         arr[nullposY][nullposX - 1] = temp
         draw()
+        turn.innerText = t++;
     }
+    
 })
