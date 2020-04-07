@@ -28,6 +28,7 @@ function filled() {
 
 
 ok.addEventListener('click', () => {
+    t=1;
     
     arrlength = +difficult.value;
     var a = [];
@@ -54,8 +55,7 @@ ok.addEventListener('click', () => {
 
         }
         let s = 1,m=1,h=1;
-        timerId = setInterval(function () {
-            
+        timerId = setInterval(function () {			
             sec.innerText = s++;
             if (s==59){
                 min.innerText = m++;
@@ -65,7 +65,14 @@ ok.addEventListener('click', () => {
                     m=0;
                 }
             }
-		}, 1000);
+        }, 1000);
+        if(timerId>3){
+            
+            clearInterval(timerId);
+            
+        }
+        
+        
     }
 
 rectSize = c.width / arr.length;
